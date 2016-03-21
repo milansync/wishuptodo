@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+
+<link rel="stylesheet" type="text/css" href="/javascripts/datetimepicker/jquery.datetimepicker.css" >
+<link rel="stylesheet" type="text/css" href="/css/style.css" >
+
+<script src="/javascripts/datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+
+
+
+
+<div class="container" ng-controller="MainCtrl">
+     <button type="submit" class="btn btn-primary btn-lg" style="float:right"; ng-click="logout()">Logout</button>
+
+    <!-- HEADER AND TODO COUNT -->
+    <div class="jumbotron text-center" style="height: 100px; padding-top:20px;">
+        <h2 style="">My Personal Todo Reminders : <span class="label label-danger">{{ todos.length }}</span></h2>
+    </div>
+    <!-- TODO LIST -->
+    <div id="todo-list" class="row">
+        <div class="col-sm-12 col-sm-offset-2">
+            <table  style="width:100%">
+            <!-- LOOP OVER THE TODOS IN $scope.todos -->
+            <tr class="checkbox" ng-repeat="todo in todos">
+                <td class="col-md-2" style="padding-top: 10px;">
+
+
+                    <label>
+                    <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.fulltodo }} <b>on</b> <i>{{ todo.date | date:'medium' }}</i>
+                </label>
+
+
+                </td>
+                    <td class="col-md-2" style="padding-top: 10px;padding-bottom: 10px;">
+
+                <button type="submit" class="btn btn-success btn-md" ng-click="snoozeTodo(todo._id)">Snooze</button>
+
+                </td>
+            </tr>
+            </table>
+            <br>
+        </div>
+    </div>
+
+    <!-- FORM TO CREATE TODOS -->
+    <div id="todo-form" class="row">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+            <form>
+                <div class="form-group">
+
+                    <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                    <input type="text" class="form-control input-lg text-center" placeholder="Add another reminder" ng-model="formData.text">
+                </div>
+                <div class="form-group col-sm-6" >
+                <input id="datetimepicker" class="form-control input-lg text-center" placeholder="Date and Time" type="text" ng-model="formData.date">
+                    </div>
+
+                <div class="form-group col-sm-6 ">
+                    <input id="pac-input" class="form-control input-lg text-center" type="text" placeholder="Location" ng-model="formData.location">
+                </div>
+
+                <div style="display:none;" id="map"></div>
+                <!-- createToDo() WILL CREATE NEW TODOS -->
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+            </form>
+            <br>
+            
+           
+        </div>
+    </div>
+
+
+
+
+</div>
+<script src="/javascripts/todo.js"></script>>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEx0KqzeRup8oO7eieQroDl9_IpNH1t5g&libraries=places&callback=initAutocomplete"
+        async defer></script>

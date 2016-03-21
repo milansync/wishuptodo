@@ -1,0 +1,80 @@
+<link rel="stylesheet" type="text/css" href="/css/style2.css" >
+<div class="container" ng-controller="loginCtrl">
+
+    </div>
+    <hgroup>
+        <h1>Login or</h1><h3>Sign up</h3>
+        
+    </hgroup>
+<div class="omb_login">
+    <!--<h3 class="omb_authTitle">Login or <a href="#">Sign up</a></h3>-->
+    <div class="row omb_row-sm-offset-10 omb_socialButtons">
+        <div class="col-md-offset-4 col-xs-2 " style="float:center;">
+            <a href="/auth/facebook" class="btn btn-lg btn-block omb_btn-facebook ">
+                <i class="fa fa-facebook visible-xs"></i>
+                <span class="hidden-xs">Facebook</span>
+            </a>
+        </div>
+        <div class="col-md-offset-4 col-xs-2 " style="margin-left:00px;">
+            <a href="/auth/google" class="btn btn-lg btn-block omb_btn-google">
+                <i class="fa fa-google visible-xs"></i>
+                <span class="hidden-xs">Google</span>
+            </a>
+        </div>
+
+
+    </div>
+    <form>
+        <div class="group">
+            <input type="text" name="email" ng-model="email" ><span class="highlight"></span><span class="bar"></span>
+            <label>Email</label>
+        </div>
+        <div class="group">
+            <input type="password" name="password" ng-model="password"><span class="highlight"></span><span class="bar"></span>
+            <label>Password</label>
+        </div>
+        <button type="button" class="button buttonBlue" type="submit" ng-click="login()">Login
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        </button>
+        <button type="button" class="button buttonBlue"  type="submit" ng-click="signup()">Sign up
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        </button>
+    </form>
+
+</div>
+<script> $(window, document, undefined).ready(function() {
+
+        $('input').blur(function() {
+var $this = $(this);
+if ($this.val())
+$this.addClass('used');
+else
+$this.removeClass('used');
+});
+
+var $ripples = $('.ripples');
+
+$ripples.on('click.Ripples', function(e) {
+
+var $this = $(this);
+var $offset = $this.parent().offset();
+var $circle = $this.find('.ripplesCircle');
+
+var x = e.pageX - $offset.left;
+var y = e.pageY - $offset.top;
+
+$circle.css({
+top: y + 'px',
+left: x + 'px'
+});
+
+$this.addClass('is-active');
+
+});
+
+$ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+$(this).removeClass('is-active');
+});
+
+});
+</script>
